@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<input 
+    placeholder="Enter your ingredients"
+    class="px-3 py-2 font-semibold placeholder-gray-500 text-black rounded border-none ring-2 ring-gray-300 focus:ring-gray-500 focus:ring-2">
+{% if recipes %}
+    <div class="ui cards">
+        {% for recipe in recipes %}
+            <a href="{% url "detail" recipe.id %}" class="ui card flex my-5 px-3 py-2 border rounded cursor-pointer">
+                <div class="image mr-4 h-32 w-42 overflow-hidden">
+                    <img class="object-contain w-full h-full" src="{{ recipe.image.url }}">
+                </div>
+                <div class="content w-full">
+                    <div class="flex justify-between"><p class="font-semibold text-gray-500">Name:</p> {{ recipe.name }}</div>
+                    <div class="flex"><p class="font-semibold text-gray-500">Ingredients:</p> {{ recipe.ingredients }}</div> 
+                    <div class="flex"><p class="font-semibold text-gray-500">Author:</p> {{ recipe.author.username }}</div>                 
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endif %}        
+{% endblock content %}
+

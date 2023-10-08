@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<form class="flex flex-col" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if submitted %}
+    <h1 class="allign-center">Your recipe has been successfully uploaded to the website</h1>
+    {% endif %}
+    {{ form }}
+    {{form.errors}}
+    <input class="border mt-6" type="submit">
+
+</form>
+{% endblock content %}
