@@ -8,15 +8,18 @@
 <body>
     <nav>
         <div class="w-full py-3 px-16 bg-black flex text-white">
-            <a href="/" class="flex basis-8/12">Recipes</a>
+            <div class="flex basis-8/12">
+                <a class="hover:underline" href="/">Recipes</a>
+            </div>
+            
             <div class="flex basis-4/12 justify-between">
-                <a href="{% url 'my_recipes' user.id %}">My recipes</a>
-                <a href="{% url "addRecipe" %}">Add recipe</a>
+                <a class="hover:underline" href="{% url "addRecipe" %}">Add recipe</a>
                 {% if user.is_authenticated %}
-                <a href="{% url "logout" %}">{{ user.username }}</a>
+                <a class="hover:underline" href="{% url 'my_recipes' user.id %}">My recipes</a>
+                <a class="text-green-600 hover:underline" href="{% url "logout" %}">{{ user.username }}</a>
                 {% else %}
-                <a href="{% url "login" %}">Login</a>
-                <a href="{% url "register_user" %}">Register</a>
+                <a class="hover:underline" href="{% url "login" %}">Login</a>
+                <a class="hover:underline" href="{% url "register_user" %}">Register</a>
                 {% endif %}
             </div>
         </div>

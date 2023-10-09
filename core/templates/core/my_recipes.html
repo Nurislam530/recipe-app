@@ -1,6 +1,7 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
     {% for recipe in recipes %}
     <div class="image mr-4 h-32 w-42 overflow-hidden">
         <img class="object-contain w-full h-full" src="{{ recipe.image.url }}">
@@ -9,4 +10,8 @@
     <div>Ingredients: {{recipe.ingredients}}</div>
     <div>Description: {{recipe.description}}</div>
     {% endfor %}
+{% else %}
+<p>Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register_user' %}">register</a> to leave a comment.</p>
+{% endif %}
+
 {% endblock content %}

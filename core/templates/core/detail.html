@@ -9,16 +9,25 @@
     <div>Ingredients: {{recipe.ingredients}}</div>
     <div>Description: {{recipe.description}}</div>
 
-    <form class="flex flex-col" method="post" enctype="multipart/form-data">
+    {% if user.is_authenticated %}
+    <!-- Display the comment form for logged-in users -->
+    <form method="post" action="">
         {% csrf_token %}
-        {% if submitted %}
-        <h1 class="allign-center">Your recipe has been successfully uploaded to the website</h1>
-        {% endif %}
+        {{ form.as_p }}
+        <button type="submit">Submit Comment</button>
+    </form>
+    {% else %}
+        <!-- Display links to login and registration pages for not logged-in users -->
+        <p>Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register_user' %}">register</a> to leave a comment.</p>
+    {% endif %}
+
+    {% comment %} <form class="flex flex-col" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
         {{ form }}
         {{form.errors}}
         <input class="border mt-6" type="submit">
     
-    </form>
+    </form> {% endcomment %}
 
     {% for com in comment %}
     <div class="mt-2">Rate: {{com.stars}}</div>

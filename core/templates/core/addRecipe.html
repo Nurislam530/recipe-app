@@ -1,6 +1,7 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
 <form class="flex flex-col" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% if submitted %}
@@ -11,4 +12,8 @@
     <input class="border mt-6" type="submit">
 
 </form>
+{% else %}
+<p>Please <a href="{% url 'login' %}">log in</a> or <a href="{% url 'register_user' %}">register</a> to add a recipe.</p>
+{% endif %}
+
 {% endblock content %}

@@ -22,7 +22,7 @@ def detail(request, pk):
         for com in comment:
             sum_of_stars += com.stars
         sum_of_stars = sum_of_stars/len(comment)
-        round(sum_of_stars, 2)
+        rounded_sum = round(sum_of_stars, 1)
     submitted = False
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -35,7 +35,7 @@ def detail(request, pk):
     elif 'submitted' in request.GET:
         submitted = True
     form = CommentForm() 
-    return render(request, 'core/detail.html', { "recipe": recipe, "comment": comment,'form': form, 'submitted': submitted, 'sum_of_stars': sum_of_stars})
+    return render(request, 'core/detail.html', { "recipe": recipe, "comment": comment,'form': form, 'submitted': submitted, 'sum_of_stars': rounded_sum})
 
 def addRecipe(request):
     submitted = False
