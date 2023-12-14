@@ -8,5 +8,5 @@ My recipes,
 Add recipe,
 Write a comment on the recipe and rate it.
 
-![image](https://github.com/Nurislam530/recipe-app/assets/80254372/6989781c-9eea-4080-8736-754e1a16ca5d)
+
 
